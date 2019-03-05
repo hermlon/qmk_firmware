@@ -187,26 +187,18 @@ static void select_row(uint8_t row)
             palSetPadMode(TEENSY_PIN17_IOPORT, TEENSY_PIN17, PAL_MODE_OUTPUT_PUSHPULL);
             palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN17);
             break;
-    }
-    switch (row) {
         case 1:
             palSetPadMode(TEENSY_PIN18_IOPORT, TEENSY_PIN18, PAL_MODE_OUTPUT_PUSHPULL);
             palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN18);
             break;
-    }
-    switch (row) {
         case 2:
             palSetPadMode(TEENSY_PIN19_IOPORT, TEENSY_PIN19, PAL_MODE_OUTPUT_PUSHPULL);
             palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN19);
             break;
-    }
-    switch (row) {
         case 3:
             palSetPadMode(TEENSY_PIN20_IOPORT, TEENSY_PIN20, PAL_MODE_OUTPUT_PUSHPULL);
             palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN20);
             break;
-    }
-    switch (row) {
         case 4:
             palSetPadMode(TEENSY_PIN21_IOPORT, TEENSY_PIN21, PAL_MODE_OUTPUT_PUSHPULL);
             palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN21);
