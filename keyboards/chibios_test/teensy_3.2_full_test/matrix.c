@@ -135,6 +135,7 @@ static void  init_cols(void)
     // internal pull-up
     palSetPadMode(TEENSY_PIN1_IOPORT, TEENSY_PIN1, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN2_IOPORT, TEENSY_PIN2, PAL_MODE_INPUT_PULLUP);
+    palSetPadMode(TEENSY_PIN3_IOPORT, TEENSY_PIN3, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN4_IOPORT, TEENSY_PIN4, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN5_IOPORT, TEENSY_PIN5, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN6_IOPORT, TEENSY_PIN6, PAL_MODE_INPUT_PULLUP);
@@ -142,10 +143,10 @@ static void  init_cols(void)
     palSetPadMode(TEENSY_PIN8_IOPORT, TEENSY_PIN8, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN9_IOPORT, TEENSY_PIN9, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN10_IOPORT, TEENSY_PIN10, PAL_MODE_INPUT_PULLUP);
-    palSetPadMode(TEENSY_PIN13_IOPORT, TEENSY_PIN13, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN14_IOPORT, TEENSY_PIN14, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN15_IOPORT, TEENSY_PIN15, PAL_MODE_INPUT_PULLUP);
     palSetPadMode(TEENSY_PIN16_IOPORT, TEENSY_PIN16, PAL_MODE_INPUT_PULLUP);
+    palSetPadMode(TEENSY_PIN17_IOPORT, TEENSY_PIN17, PAL_MODE_INPUT_PULLUP);
 }
 
 /* Returns status of switches(1:on, 0:off) */
@@ -161,21 +162,21 @@ static matrix_row_t read_cols(void)
     | ((palReadPad(TEENSY_PIN8_IOPORT, TEENSY_PIN8)==PAL_HIGH) ? 0 : (1<<7))
     | ((palReadPad(TEENSY_PIN9_IOPORT, TEENSY_PIN9)==PAL_HIGH) ? 0 : (1<<8))
     | ((palReadPad(TEENSY_PIN10_IOPORT, TEENSY_PIN10)==PAL_HIGH) ? 0 : (1<<9))
-    | ((palReadPad(TEENSY_PIN13_IOPORT, TEENSY_PIN13)==PAL_HIGH) ? 0 : (1<<10))
-    | ((palReadPad(TEENSY_PIN14_IOPORT, TEENSY_PIN14)==PAL_HIGH) ? 0 : (1<<11))
-    | ((palReadPad(TEENSY_PIN15_IOPORT, TEENSY_PIN15)==PAL_HIGH) ? 0 : (1<<12))
-    | ((palReadPad(TEENSY_PIN16_IOPORT, TEENSY_PIN16)==PAL_HIGH) ? 0 : (1<<13));
+    | ((palReadPad(TEENSY_PIN14_IOPORT, TEENSY_PIN14)==PAL_HIGH) ? 0 : (1<<10))
+    | ((palReadPad(TEENSY_PIN15_IOPORT, TEENSY_PIN15)==PAL_HIGH) ? 0 : (1<<11))
+    | ((palReadPad(TEENSY_PIN16_IOPORT, TEENSY_PIN16)==PAL_HIGH) ? 0 : (1<<12))
+    | ((palReadPad(TEENSY_PIN17_IOPORT, TEENSY_PIN17)==PAL_HIGH) ? 0 : (1<<13));
 }
 
 /* Row pin configuration
  */
 static void unselect_rows(void)
 {
-    palSetPadMode(TEENSY_PIN17_IOPORT, TEENSY_PIN17, PAL_MODE_INPUT); // hi-Z
     palSetPadMode(TEENSY_PIN18_IOPORT, TEENSY_PIN18, PAL_MODE_INPUT); // hi-Z
     palSetPadMode(TEENSY_PIN19_IOPORT, TEENSY_PIN19, PAL_MODE_INPUT); // hi-Z
     palSetPadMode(TEENSY_PIN20_IOPORT, TEENSY_PIN20, PAL_MODE_INPUT); // hi-Z
     palSetPadMode(TEENSY_PIN21_IOPORT, TEENSY_PIN21, PAL_MODE_INPUT); // hi-Z
+    palSetPadMode(TEENSY_PIN22_IOPORT, TEENSY_PIN22, PAL_MODE_INPUT); // hi-Z
 }
 
 static void select_row(uint8_t row)
@@ -184,24 +185,25 @@ static void select_row(uint8_t row)
     // Output low to select
     switch (row) {
         case 0:
-            palSetPadMode(TEENSY_PIN17_IOPORT, TEENSY_PIN17, PAL_MODE_OUTPUT_PUSHPULL);
-            palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN17);
+            palSetPadMode(TEENSY_PIN18_IOPORT, TEENSY_PIN18, PAL_MODE_OUTPUT_PUSHPULL);
+            palClearPad(TEENSY_PIN18_IOPORT, TEENSY_PIN18);
             break;
         case 1:
-            palSetPadMode(TEENSY_PIN18_IOPORT, TEENSY_PIN18, PAL_MODE_OUTPUT_PUSHPULL);
-            palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN18);
+            palSetPadMode(TEENSY_PIN19_IOPORT, TEENSY_PIN19, PAL_MODE_OUTPUT_PUSHPULL);
+            palClearPad(TEENSY_PIN19_IOPORT, TEENSY_PIN19);
             break;
         case 2:
-            palSetPadMode(TEENSY_PIN19_IOPORT, TEENSY_PIN19, PAL_MODE_OUTPUT_PUSHPULL);
-            palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN19);
+            palSetPadMode(TEENSY_PIN20_IOPORT, TEENSY_PIN20, PAL_MODE_OUTPUT_PUSHPULL);
+            palClearPad(TEENSY_PIN20_IOPORT, TEENSY_PIN20);
             break;
         case 3:
-            palSetPadMode(TEENSY_PIN20_IOPORT, TEENSY_PIN20, PAL_MODE_OUTPUT_PUSHPULL);
-            palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN20);
-            break;
-        case 4:
             palSetPadMode(TEENSY_PIN21_IOPORT, TEENSY_PIN21, PAL_MODE_OUTPUT_PUSHPULL);
-            palClearPad(TEENSY_PIN17_IOPORT, TEENSY_PIN21);
+            palClearPad(TEENSY_PIN21_IOPORT, TEENSY_PIN21);
             break;
+	case 4:
+            palSetPadMode(TEENSY_PIN22_IOPORT, TEENSY_PIN22, PAL_MODE_OUTPUT_PUSHPULL);
+            palClearPad(TEENSY_PIN22_IOPORT, TEENSY_PIN22);
+            break;
+
     }
 }
