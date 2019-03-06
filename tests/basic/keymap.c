@@ -15,7 +15,7 @@
  */
 
 #include "quantum.h"
-
+#include "ws2812.hpp"
 // Don't rearrange keys as existing tests might rely on the order
 // Col2, Row 0 has to be KC_NO, because tests rely on it
 

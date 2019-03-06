@@ -20,6 +20,7 @@
 extern "C" {
 #include "quantum.h"
 }
+#include "ws2812.hpp"
 #include "test_driver.hpp"
 #include "test_matrix.h"
 #include "keyboard_report_util.hpp"
