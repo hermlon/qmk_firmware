@@ -29,6 +29,7 @@
 // Application
 #include "board.h"
 #include "chutil.h"
+#include "halconf.h"
 
 #include "rgblight_types.h"
 #include "mcuconf.h"
@@ -211,9 +212,9 @@ void ws2812_init(void)
 
     // Configure pin as AF output. If there's an external pull up resistor the signal level is brought to 5V using open drain mode.
 #ifdef WS2812_EXTERNAL_PULLUP
-    palSetPadMode(PORT_WS2812, PIN_WS2812, PAL_MODE_ALTERNATE(WS2812_AF) | PAL_STM32_OTYPE_OPENDRAIN);
+    palSetPadMode(PORT_WS2812, PIN_WS2812, PAL_MODE_OUTPUT_OPENDRAIN);
 #else
-    palSetPadMode(PORT_WS2812, PIN_WS2812, PAL_MODE_ALTERNATE(WS2812_AF));
+    palSetPadMode(PORT_WS2812, PIN_WS2812, PAL_MODE_OUTPUT_OPENDRAIN);
 #endif
 
     // PWM Configuration
